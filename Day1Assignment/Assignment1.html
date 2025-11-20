@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+        .container {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        hr {
+            border: 1px solid #ccc;
+            margin: 10px 0 20px 0;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JavaScript Notes</h1>
+        <hr>
+        <pre>
+1) var, let, const 
+1. var
+• ha junya type cha variable declare karaycha keyword aahe
+• global kiva function scope madhe work karto
+• var la punha declare karu shakto
+• value change pn karu shakto mhnjech redeclare kru shkto
+Example
+&lt;script&gt;
+    var x = 10;
+    var x = 20; // redeclare allowed
+    x = 30;     // value change allowed
+    console.log(x);
+&lt;/script&gt;
+
+2. let
+• ha navin keyword aahe
+• block scope aahe ({} ya chya aat work karto)
+• let la punha declare karaycha allowed nahi
+• value change karu shakto
+Example
+&lt;script&gt;
+    let a = 10;
+    // let a = 20; ❌ not allowed
+    a = 20;      // ✔ allowed
+    console.log(a);
+&lt;/script&gt;
+
+3. const
+• ya madhe value fix aste, ekdach set karta yeते
+• value change hot nahi
+• block scope aahe
+Example
+&lt;script&gt;
+    const pi = 3.14;
+    // pi = 10; ❌ not allowed
+    console.log(pi);
+&lt;/script&gt;
+
+2) Hoisting :
+ Hoisting mhnje JS code run honya purvi variables ani functions memory chya top la store kele jatat. 
+Declaration var jate, value nantr milte.
+
+3) Function :
+Function mhanje kay?
+• code cha ek chota block
+• barach vela repeat use karta yeto
+• input gheto, output deto
+• function la call karavach lagto
+
+Normal Function Syntax
+&lt;script&gt;
+    function greet() {
+        console.log("Hello");
+    }
+    greet(); // function call
+&lt;/script&gt;
+
+Function with Parameters
+&lt;script&gt;
+    function add(a, b) {
+        console.log(a + b);
+    }
+    add(5, 10);
+&lt;/script&gt;
+
+4) Array :
+Array mhanje kay?
+• ek variable madhe multiple values store karayla array use karto
+• indexing 0 pasun suru hote
+• array madhli value arrayName[index] ne gheto
+Example
+&lt;script&gt;
+    let fruits = ["apple", "banana", "mango"];
+    console.log(fruits[0]); // apple
+&lt;/script&gt;
+
+Array in Java vs JavaScript
+Java Array :
+• size fix 
+• same data type
+• Example: int[] arr = {1, 2, 3};
+JavaScript Array :
+• size dynamic
+• mixed types allowed 
+• Example: let arr = [1, "Siddhi", true];
+
+5) JavaScript Operators:
+1. Arithmetic Operators (Math operations)
+Used for doing math.
+Operator Meaning Example Output
++ Addition 5 + 3 8
+- Subtraction 10 - 2 8
+* Multiplication 4 * 2 8
+/ Division 20 / 5 4
+% Modulus (remainder) 10 % 3 1
+** Exponent (power) 2 ** 3 8
+
+2. Assignment Operators (Store values)
+Operator Meaning Example
+= Assign value let x = 5
++= Add and assign x += 3 → x = x + 3
+-= Subtract and assign x -= 2
+*= Multiply and assign x *= 4
+/= Divide and assign x /= 2
+
+3. Comparison Operators (Compare values)
+Operator Meaning Example Output
+== Equal 5 == "5" true
+=== Strict Equal 5 === "5" false
+!= Not equal 5 != 3 true
+> Greater than 7 > 3 true
+< Less than 2 < 5 true
+>= Greater or equal 5 >= 5 true
+<= Less or equal 3 <= 2 false
+
+4. Logical Operators (Check conditions)
+Operator Meaning Example Result
+&& AND true && false false
+|| OR true || false true
+! NOT !true false
+
+5. String Operators
+Strings can be joined using +.
+Example:
+let a = "Hello";
+let b = "World";
+console.log(a + " " + b);  // Hello World
+
+6. Increment / Decrement Operators
+Symbol Meaning Example
+++ Increase by 1 x++ or ++x
+-- Decrease by 1 x-- or --x
+
+7. Ternary Operator (Short if else)
+condition ? valueIfTrue : valueIfFalse;
+Example:
+let age = 18;
+let result = (age >= 18) ? "Adult" : "Minor";
+
+6) Diff Between static language and dynamic language
+Static Language (Type fix asel)
+Meaning: Variable la use karaycha asel tar tyacha type pahile sangava lagto.
+Example language: C, C++, Java, C#
+Example:
+int age = 20;
+age = "hello";  //error yeil
+Features:
+• Type fix asel
+• Type change karu nahi shakta
+• Program fast chalto
+
+Dynamic Language (Type fix nasato)
+Meaning: Variable la type sangaychi garaj nahi. Type run hoto teva check hota.
+Example language: JavaScript, Python, PHP
+Example:
+let x = 10;
+x = "hello";  // chalte
+Features:
+• Type sangaychi garaj nahi
+• Type kadhi hi change ho shakta
+• Error run time la yeu shakta
+• Program static peksha slow asu shakto
+        </pre>
+    </div>
+</body>
+</html>
