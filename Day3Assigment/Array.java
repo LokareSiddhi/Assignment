@@ -8,7 +8,7 @@ class B extends A{
         System.out.println("i am show from B");
     }
 }
-public class A4 {
+public class Array{
         public static void main(String[] args){
             Object [] a = {1, 1.5, 5.2f, 'a', "Array" , new A() };
             for (Object o : a)
