@@ -1,0 +1,414 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.44 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| college            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use college;
+Database changed
+mysql> create table student(id int,name varchar(50),age int));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> create table student(id int,name varchar(50),age int);
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> show tables
+    ->
+    -> show tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show tables'at line 3
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| student           |
++-------------------+
+1 row in set (0.03 sec)
+
+mysql> select*from student;
+Empty set (0.01 sec)
+
+mysql> insert into student values(95,'Siddhi Lokare',19);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into student values(97,'Yogita Mohite',20);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into student values(77,Shravani katkar',20);
+    '>
+    '> '
+    -> insert into student values(95,'Siddhi Lokare',19);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'katkar',20);
+
+'
+insert into student values(95,'Siddhi Lokare',19)' at line 1
+mysql> insert into student values(77,'Shravani Katkar',20);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select*from student;
++------+-----------------+------+
+| id   | name            | age  |
++------+-----------------+------+
+|   95 | Siddhi Lokare   |   19 |
+|   97 | Yogita Mohite   |   20 |
+|   77 | Shravani Katkar |   20 |
++------+-----------------+------+
+3 rows in set (0.03 sec)
+
+mysql> insert into student values(77,'Shravani Katkar');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into student values(60,'',21);
+Query OK, 1 row affected (0.05 sec)
+
+mysql>  select*from student;
++------+-----------------+------+
+| id   | name            | age  |
++------+-----------------+------+
+|   95 | Siddhi Lokare   |   19 |
+|   97 | Yogita Mohite   |   20 |
+|   77 | Shravani Katkar |   20 |
+|   60 |                 |   21 |
++------+-----------------+------+
+4 rows in set (0.00 sec)
+
+mysql> update student set name='Vedika Jagtap' where id=60;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  select*from student;
++------+-----------------+------+
+| id   | name            | age  |
++------+-----------------+------+
+|   95 | Siddhi Lokare   |   19 |
+|   97 | Yogita Mohite   |   20 |
+|   77 | Shravani Katkar |   20 |
+|   60 | Vedika Jagtap   |   21 |
++------+-----------------+------+
+4 rows in set (0.00 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql>  select*from student;
+ERROR 1146 (42S02): Table 'college.student' doesn't exist
+mysql> insert into student values(77,'Shravani Katkar');
+ERROR 1146 (42S02): Table 'college.student' doesn't exist
+mysql> create table student(id int primary key auto_increment,name varchar(60) not null,mobile_no varchar(10)unique);
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> insert into student values(77,'Shravani Katkar',7218922968);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into student values(0,'Siddhi Lokare',7218922968);
+ERROR 1062 (23000): Duplicate entry '7218922968' for key 'student.mobile_no'
+mysql> insert into student values(0,'Siddhi Lokare',7218922967);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select*from student;
++----+-----------------+------------+
+| id | name            | mobile_no  |
++----+-----------------+------------+
+| 77 | Shravani Katkar | 7218922968 |
+| 79 | Siddhi Lokare   | 7218922967 |
++----+-----------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into student values(49,'Pragati Jadhav',7249814405);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from student;
++----+-----------------+------------+
+| id | name            | mobile_no  |
++----+-----------------+------------+
+| 49 | Pragati Jadhav  | 7249814405 |
+| 77 | Shravani Katkar | 7218922968 |
+| 79 | Siddhi Lokare   | 7218922967 |
++----+-----------------+------------+
+3 rows in set (0.00 sec)
+
+mysql>  insert into student(name,mobile_no)values('Vedika Jagtap',9604259160);
+Query OK, 1 row affected (0.04 sec)
+
+mysql>  select*from student;
++----+-----------------+------------+
+| id | name            | mobile_no  |
++----+-----------------+------------+
+| 49 | Pragati Jadhav  | 7249814405 |
+| 77 | Shravani Katkar | 7218922968 |
+| 79 | Siddhi Lokare   | 7218922967 |
+| 80 | Vedika Jagtap   | 9604259160 |
++----+-----------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into student(mobile_no,name)values(7057055848,'Yogita Mohite');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select*from student;
++----+-----------------+------------+
+| id | name            | mobile_no  |
++----+-----------------+------------+
+| 49 | Pragati Jadhav  | 7249814405 |
+| 77 | Shravani Katkar | 7218922968 |
+| 79 | Siddhi Lokare   | 7218922967 |
+| 80 | Vedika Jagtap   | 9604259160 |
+| 81 | Yogita Mohite   | 7057055848 |
++----+-----------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into student values(0,'Mohini Lokare','7757522948');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select*from student;
++----+-----------------+------------+
+| id | name            | mobile_no  |
++----+-----------------+------------+
+| 49 | Pragati Jadhav  | 7249814405 |
+| 77 | Shravani Katkar | 7218922968 |
+| 79 | Siddhi Lokare   | 7218922967 |
+| 80 | Vedika Jagtap   | 9604259160 |
+| 81 | Yogita Mohite   | 7057055848 |
+| 82 | Mohini Lokare   | 7757522948 |
++----+-----------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> delete from student where id=82;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from student;
++----+-----------------+------------+
+| id | name            | mobile_no  |
++----+-----------------+------------+
+| 49 | Pragati Jadhav  | 7249814405 |
+| 77 | Shravani Katkar | 7218922968 |
+| 79 | Siddhi Lokare   | 7218922967 |
+| 80 | Vedika Jagtap   | 9604259160 |
+| 81 | Yogita Mohite   | 7057055848 |
++----+-----------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student rename id to roll_no;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to roll_no' at line 1
+mysql> alter table student rename column id to roll_no;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select*from student;
++---------+-----------------+------------+
+| roll_no | name            | mobile_no  |
++---------+-----------------+------------+
+|      49 | Pragati Jadhav  | 7249814405 |
+|      77 | Shravani Katkar | 7218922968 |
+|      79 | Siddhi Lokare   | 7218922967 |
+|      80 | Vedika Jagtap   | 9604259160 |
+|      81 | Yogita Mohite   | 7057055848 |
++---------+-----------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> desc student;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| roll_no   | int         | NO   | PRI | NULL    | auto_increment |
+| name      | varchar(60) | NO   |     | NULL    |                |
+| mobile_no | varchar(10) | YES  | UNI | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+3 rows in set (0.04 sec)
+
+mysql> alter table student modify column name varchar(70);
+Query OK, 5 rows affected (0.15 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select*from student;
++---------+-----------------+------------+
+| roll_no | name            | mobile_no  |
++---------+-----------------+------------+
+|      49 | Pragati Jadhav  | 7249814405 |
+|      77 | Shravani Katkar | 7218922968 |
+|      79 | Siddhi Lokare   | 7218922967 |
+|      80 | Vedika Jagtap   | 9604259160 |
+|      81 | Yogita Mohite   | 7057055848 |
++---------+-----------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> desc student;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| roll_no   | int         | NO   | PRI | NULL    | auto_increment |
+| name      | varchar(70) | YES  |     | NULL    |                |
+| mobile_no | varchar(10) | YES  | UNI | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select *from student where name like'%e';
++---------+---------------+------------+
+| roll_no | name          | mobile_no  |
++---------+---------------+------------+
+|      79 | Siddhi Lokare | 7218922967 |
+|      81 | Yogita Mohite | 7057055848 |
++---------+---------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select *from student where name like'%Yogita%';
++---------+---------------+------------+
+| roll_no | name          | mobile_no  |
++---------+---------------+------------+
+|      81 | Yogita Mohite | 7057055848 |
++---------+---------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select *from student where name like'%a-;
+    '> select *from student where name like'%e';
+    '> select *from student where name like'%a_';
+    '> \c
+    '> ;
+    '> ^C
+mysql> select *from student where name like'%a_';
++---------+-----------------+------------+
+| roll_no | name            | mobile_no  |
++---------+-----------------+------------+
+|      49 | Pragati Jadhav  | 7249814405 |
+|      77 | Shravani Katkar | 7218922968 |
+|      80 | Vedika Jagtap   | 9604259160 |
++---------+-----------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student values(0,'Mohini Mahadev Lokare','7758906229');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select*from student;
++---------+-----------------------+------------+
+| roll_no | name                  | mobile_no  |
++---------+-----------------------+------------+
+|      49 | Pragati Jadhav        | 7249814405 |
+|      77 | Shravani Katkar       | 7218922968 |
+|      79 | Siddhi Lokare         | 7218922967 |
+|      80 | Vedika Jagtap         | 9604259160 |
+|      81 | Yogita Mohite         | 7057055848 |
+|      83 | Mohini Mahadev Lokare | 7758906229 |
++---------+-----------------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select *from student where name like'%Mahadev%';
++---------+-----------------------+------------+
+| roll_no | name                  | mobile_no  |
++---------+-----------------------+------------+
+|      83 | Mohini Mahadev Lokare | 7758906229 |
++---------+-----------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from student;
+Query OK, 6 rows affected (0.00 sec)
+
+mysql> select *from student;
+Empty set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> select *from student;
++---------+-----------------------+------------+
+| roll_no | name                  | mobile_no  |
++---------+-----------------------+------------+
+|      49 | Pragati Jadhav        | 7249814405 |
+|      77 | Shravani Katkar       | 7218922968 |
+|      79 | Siddhi Lokare         | 7218922967 |
+|      80 | Vedika Jagtap         | 9604259160 |
+|      81 | Yogita Mohite         | 7057055848 |
+|      83 | Mohini Mahadev Lokare | 7758906229 |
++---------+-----------------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select name,roll_no from student;
++-----------------------+---------+
+| name                  | roll_no |
++-----------------------+---------+
+| Pragati Jadhav        |      49 |
+| Shravani Katkar       |      77 |
+| Siddhi Lokare         |      79 |
+| Vedika Jagtap         |      80 |
+| Yogita Mohite         |      81 |
+| Mohini Mahadev Lokare |      83 |
++-----------------------+---------+
+6 rows in set (0.00 sec)
+
+mysql> create view as Stud_name as select name,roll_no from student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as Stud_nameas select name,roll_no from student' at line 1
+mysql>  create view Stud_name as select name,roll_no from student;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables
+    -> ^C
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| stud_name         |
+| student           |
++-------------------+
+2 rows in set (0.00 sec)
+
+mysql> select*from stud_name;
++-----------------------+---------+
+| name                  | roll_no |
++-----------------------+---------+
+| Pragati Jadhav        |      49 |
+| Shravani Katkar       |      77 |
+| Siddhi Lokare         |      79 |
+| Vedika Jagtap         |      80 |
+| Yogita Mohite         |      81 |
+| Mohini Mahadev Lokare |      83 |
++-----------------------+---------+
+6 rows in set (0.00 sec)
+
+mysql> select*from student;
++---------+-----------------------+------------+
+| roll_no | name                  | mobile_no  |
++---------+-----------------------+------------+
+|      49 | Pragati Jadhav        | 7249814405 |
+|      77 | Shravani Katkar       | 7218922968 |
+|      79 | Siddhi Lokare         | 7218922967 |
+|      80 | Vedika Jagtap         | 9604259160 |
+|      81 | Yogita Mohite         | 7057055848 |
+|      83 | Mohini Mahadev Lokare | 7758906229 |
++---------+-----------------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> delete from student where id=83;
+ERROR 1054 (42S22): Unknown column 'id' in 'where clause'
+mysql> delete from student where roll_no=83;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select*from student;
++---------+-----------------+------------+
+| roll_no | name            | mobile_no  |
++---------+-----------------+------------+
+|      49 | Pragati Jadhav  | 7249814405 |
+|      77 | Shravani Katkar | 7218922968 |
+|      79 | Siddhi Lokare   | 7218922967 |
+|      80 | Vedika Jagtap   | 9604259160 |
+|      81 | Yogita Mohite   | 7057055848 |
++---------+-----------------+------------+
+5 rows in set (0.00 sec)
+
+mysql>
