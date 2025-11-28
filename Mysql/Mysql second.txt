@@ -1,0 +1,210 @@
+mysql> create database companydb;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use companydb;
+Database changed
+mysql> create table department(Dept_id int primary key,Dept_name Varchar(50));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into department values((1,"Biotech"),(2,"CS"),(3,"AI"));
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into department values(1,"Biotech"),(2,"CS"),(3,"AI");
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> create table Student(Stud_id int primary key,Stud_name varchar(60),Dept_id int,Foreign key(Dept_id)references department(Dept_id));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into Student values(95,"Siddhi Lokare",1),(97,"Yogita Mohite",2),(77,"Shravani Katkar",3);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select stud_name,Dept_name from Student inner join Department on Student.Dept_id=Department.Dept_id;
++-----------------+-----------+
+| stud_name       | Dept_name |
++-----------------+-----------+
+| Shravani Katkar | AI        |
+| Siddhi Lokare   | Biotech   |
+| Yogita Mohite   | CS        |
++-----------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select stud_name,Dept_name from Student left join  Department on Student.Dept_id=Department.Dept_id;
++-----------------+-----------+
+| stud_name       | Dept_name |
++-----------------+-----------+
+| Shravani Katkar | AI        |
+| Siddhi Lokare   | Biotech   |
+| Yogita Mohite   | CS        |
++-----------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select*from student;
++---------+-----------------+---------+
+| Stud_id | Stud_name       | Dept_id |
++---------+-----------------+---------+
+|      77 | Shravani Katkar |       3 |
+|      95 | Siddhi Lokare   |       1 |
+|      97 | Yogita Mohite   |       2 |
++---------+-----------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select*from Department;
++---------+-----------+
+| Dept_id | Dept_name |
++---------+-----------+
+|       1 | Biotech   |
+|       2 | CS        |
+|       3 | AI        |
++---------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select stud_name,Dept_name from Student right join  Department on Student.Dept_id=Department.Dept_id;
++-----------------+-----------+
+| stud_name       | Dept_name |
++-----------------+-----------+
+| Siddhi Lokare   | Biotech   |
+| Yogita Mohite   | CS        |
+| Shravani Katkar | AI        |
++-----------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student values(7,"Pragati Jadhav",4);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`companydb`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`Dept_id`) REFERENCES `department` (`Dept_id`))
+mysql> insert into department values(4,"Maths");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(7,"Pragati Jadhav",4);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select stud_name,Dept_name from Student inner join Department on Student.Dept_id=Department.Dept_id;
++-----------------+-----------+
+| stud_name       | Dept_name |
++-----------------+-----------+
+| Pragati Jadhav  | Maths     |
+| Shravani Katkar | AI        |
+| Siddhi Lokare   | Biotech   |
+| Yogita Mohite   | CS        |
++-----------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select stud_name,Dept_name from Student left join  Department on Student.Dept_id=Department.Dept_id;
++-----------------+-----------+
+| stud_name       | Dept_name |
++-----------------+-----------+
+| Pragati Jadhav  | Maths     |
+| Shravani Katkar | AI        |
+| Siddhi Lokare   | Biotech   |
+| Yogita Mohite   | CS        |
++-----------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select stud_name,Dept_name from Student right join  Department on Student.Dept_id=Department.Dept_id;
++-----------------+-----------+
+| stud_name       | Dept_name |
++-----------------+-----------+
+| Siddhi Lokare   | Biotech   |
+| Yogita Mohite   | CS        |
+| Shravani Katkar | AI        |
+| Pragati Jadhav  | Maths     |
++-----------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select*from student inner join department on student.dept_id=department.dept_id;
++---------+-----------------+---------+---------+-----------+
+| Stud_id | Stud_name       | Dept_id | Dept_id | Dept_name |
++---------+-----------------+---------+---------+-----------+
+|       7 | Pragati Jadhav  |       4 |       4 | Maths     |
+|      77 | Shravani Katkar |       3 |       3 | AI        |
+|      95 | Siddhi Lokare   |       1 |       1 | Biotech   |
+|      97 | Yogita Mohite   |       2 |       2 | CS        |
++---------+-----------------+---------+---------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select s.stud_name,d.dept_name from student s left join department d on s.dept_id=d.dept_id union select s.stud_name,d.dept_name from student s right join department d on s.dept_id=d.dept_id;
++-----------------+-----------+
+| stud_name       | dept_name |
++-----------------+-----------+
+| Pragati Jadhav  | Maths     |
+| Shravani Katkar | AI        |
+| Siddhi Lokare   | Biotech   |
+| Yogita Mohite   | CS        |
++-----------------+-----------+
+4 rows in set (0.04 sec)
+
+mysql> insert into student values(60,"Vedika Jagtap",1);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into student values(56,"Mohini Lokare",2);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select s.stud_id,s.stud_name,d.dept_name from student s join department d on s.dept_id=d.dept_id;
++---------+-----------------+-----------+
+| stud_id | stud_name       | dept_name |
++---------+-----------------+-----------+
+|      60 | Vedika Jagtap   | Biotech   |
+|      95 | Siddhi Lokare   | Biotech   |
+|      56 | Mohini Lokare   | CS        |
+|      97 | Yogita Mohite   | CS        |
+|      77 | Shravani Katkar | AI        |
+|       7 | Pragati Jadhav  | Maths     |
++---------+-----------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql>  insert into student values(56,"Mohini Lokare",3);
+ERROR 1062 (23000): Duplicate entry '56' for key 'student.PRIMARY'
+mysql> create table marks(mark_id int primary key auto_increment,stud_id int,subject varchar(50),marks int,forgien key(stud_id)references student(stud_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key(stud_id)references student(stud_id))' at line 1
+mysql> CREATE TABLE marks( mark_id INT PRIMARY KEY AUTO_INCREMENT,stud_id INT, subject VARCHAR(50),marks INT,FOREIGN KEY(stud_id) REFERENCES student(stud_id)
+    -> );
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> insert into marks(Stud_id,Subject,marks)values(60,"java",88),(77,"Python",92),(95,"Maths",79);
+Query OK, 3 rows affected (0.05 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select*from marks;
++---------+---------+---------+-------+
+| mark_id | stud_id | subject | marks |
++---------+---------+---------+-------+
+|       1 |      60 | java    |    88 |
+|       2 |      77 | Python  |    92 |
+|       3 |      95 | Maths   |    79 |
++---------+---------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select s.stud_name,m.subject,m.marks from student s join marks m on s.stud_id=m.stud_id;
++-----------------+---------+-------+
+| stud_name       | subject | marks |
++-----------------+---------+-------+
+| Vedika Jagtap   | java    |    88 |
+| Shravani Katkar | Python  |    92 |
+| Siddhi Lokare   | Maths   |    79 |
++-----------------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select*from Department;
++---------+-----------+
+| Dept_id | Dept_name |
++---------+-----------+
+|       1 | Biotech   |
+|       2 | CS        |
+|       3 | AI        |
+|       4 | Maths     |
++---------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select*from student;
++---------+-----------------+---------+
+| Stud_id | Stud_name       | Dept_id |
++---------+-----------------+---------+
+|       7 | Pragati Jadhav  |       4 |
+|      56 | Mohini Lokare   |       2 |
+|      60 | Vedika Jagtap   |       1 |
+|      77 | Shravani Katkar |       3 |
+|      95 | Siddhi Lokare   |       1 |
+|      97 | Yogita Mohite   |       2 |
++---------+-----------------+---------+
+6 rows in set (0.00 sec)
+
+mysql>
