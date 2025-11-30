@@ -5,6 +5,7 @@ import com.plexus.slokare.SalesOrderSystem.services.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,8 +17,8 @@ public class EmployeeController {
     {
         return "Welcome to sales order System Application";
     }
-    @PostMapping()
-    public Employee addEmployee(Employee employee){
+    @PostMapping("/employee")
+    public Employee addEmployee(@RequestBody Employee employee){
         Employee savedEmployee=service.addEmployee(employee);
 
         return savedEmployee;
