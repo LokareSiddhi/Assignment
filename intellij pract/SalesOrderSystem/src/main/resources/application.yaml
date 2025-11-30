@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: SalesOrderSystem
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/salesorderdb
+    username: root
+    password: rrot
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
