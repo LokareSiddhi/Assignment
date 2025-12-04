@@ -1,0 +1,12 @@
+
+import Article from"./components/Article";
+const App=()=>{
+  return(
+    <div>
+      <Article title="Kiran Lokare" description="animi necessitatibus dignissimos dolor veniam accusamus laborum totam? Nihil non quis aperiam! Dolorum architecto repellat, voluptatem et provident possimus. Delectus quibusdam est corrupti tempore, dicta laboriosam dolorum cupiditate aut fugit obcaecati earum deserunt. Rerum eius, deleniti, molestiae dolores doloremque voluptatibus impedit, quasi repudiandae corrupti eveniet porro magni blanditiis incidunt. Quod ad voluptatibus possimus numquam amet itaque suscipit et consectetur quisquam illum, aperiam ipsum iusto ratione doloremque eveniet quasi eos veritatis inventore unde accusamus nesciunt! Eveniet nihil perspiciatis consequatur repellat explicabo quaerat quos, unde delectus veritatis doloribus mollitia repellendus."/>
+      <Article title="Mohini Lokare"description="animi necessitatibus dignissimos dolor veniam accusamus laborum totam? Nihil non quis aperiam! Dolorum architecto repellat, voluptatem et provident possimus. Delectus quibusdam est corrupti tempore, dicta laboriosam dolorum cupiditate aut fugit obcaecati earum deserunt. Rerum eius, deleniti, molestiae dolores doloremque voluptatibus impedit, quasi repudiandae corrupti eveniet porro magni blanditiis incidunt. Quod ad voluptatibus possimus numquam amet itaque suscipit et consectetur quisquam illum, aperiam ipsum iusto ratione doloremque eveniet quasi eos veritatis inventore unde accusamus nesciunt! Eveniet nihil perspiciatis consequatur repellat explicabo quaerat quos, unde delectus veritatis doloribus mollitia repellendus."/>
+
+    </div>
+  )
+}
+export default App;
